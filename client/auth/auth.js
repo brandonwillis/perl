@@ -1,6 +1,6 @@
-angular.module('Perl.authentication', ['ngMaterial'])
+angular.module('Perl.authentication', ['ngMaterial','ui.router'])
 
-.controller('authentication',function($scope, authFactory){
+.controller('authentication',['$scope', 'authFactory', '$state', function($scope, authFactory, $state){
   AWS.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey});;
   AWS.config.region = 'us-east-1';
   var bucket = new AWS.S3({params: {Bucket: 'perlproject'}});
@@ -73,7 +73,14 @@ angular.module('Perl.authentication', ['ngMaterial'])
 
   // signup helper
   $scope.signupUser = function(info) {
-    authFactory.signup(info);
+    authFactory.signup(info).then(function(data){
+      if(data.data.isStudent === 1) {
+        $state.go('studentDashboard')
+      }
+      else if (data.data.isTutor === 1){
+        $state.go('tutorDashboard')
+      }
+    });
   };
 
   //user signin helper
@@ -100,4 +107,4 @@ angular.module('Perl.authentication', ['ngMaterial'])
     }
   }
 
-}) // end of authcontroller
+}]) // end of authcontroller

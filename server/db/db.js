@@ -29,6 +29,7 @@ knex.schema.createTableIfNotExists('users', function (user) {
   console.log('tutor table created');
 });
 
+
 knex.schema.createTableIfNotExists('invited', function(join) {
  join.integer('UID1').unsigned();
  join.integer('UID2').unsigned();

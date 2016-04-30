@@ -20,7 +20,7 @@ angular.module('Perl', ['Perl.config', 'Perl.authentication', 'Perl.services', '
     templateUrl: '../auth/signup.html',
     controller: 'authentication'
   })
-  
+
   .state('signin', {
     cache: false,
     url: '/signin',
@@ -47,21 +47,21 @@ angular.module('Perl', ['Perl.config', 'Perl.authentication', 'Perl.services', '
     url: '/tutorFilter',
     templateUrl: '../student/tutorFilter.html',
     controller: 'tutorFilter'
-  })  
+  })
 
   .state('tutorProfile', {
     cache: false,
     url: '/tutorProfile',
     templateUrl: '../student/tutorProfile.html',
     controller: 'tutorProfile'
-  }) 
+  })
 
   .state('tutorDashboard', {
     cache: false,
     url: '/tutorDashboard',
     templateUrl: '../tutor/tutorDashboard.html',
     controller: 'tutorDashboard'
-  })   
+  })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
@@ -70,4 +70,3 @@ angular.module('Perl', ['Perl.config', 'Perl.authentication', 'Perl.services', '
     .primaryPalette('blue-grey')
     .accentPalette('orange');
 });
-
