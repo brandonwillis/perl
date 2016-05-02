@@ -16,8 +16,10 @@ angular.module('Perl.authentication', ['ngMaterial', 'firebase'])
     if(file) {
       var params = {Key: prefix+file.name, ContentType: file.type, Body: file};
       bucket.upload(params, function(err, data) {
-        if(err) console.log(err)
-        console.log('data', data)
+        if(err) {
+          console.log(err);
+        }
+        console.log('upload file data: ', data)
         //data.key is the photo file name
         $scope.signup(data.Location);
       });
@@ -25,9 +27,6 @@ angular.module('Perl.authentication', ['ngMaterial', 'firebase'])
   };
 
   $scope.signup = function(image) {
-    
-
-   console.log('in signup')
     var userInfo = {
       tutor: $scope.userChecked($scope.tutorCheckBox),
       student: $scope.userChecked($scope.studentCheckBox),
@@ -36,7 +35,7 @@ angular.module('Perl.authentication', ['ngMaterial', 'firebase'])
       fullname: $scope.fullname,
       location: $scope.location,
       bio: $scope.bio,
-      imageurl: image,
+      imgurl: image,
       javascript: $scope.subjectChecked($scope.javascriptCheckbox),
       ruby: $scope.subjectChecked($scope.rubyCheckbox),
       python: $scope.subjectChecked($scope.pythonCheckbox)
@@ -133,18 +132,17 @@ angular.module('Perl.authentication', ['ngMaterial', 'firebase'])
 
 
 .directive('fileModel', ['$parse', function ($parse) {
-        return {
-            restrict: 'A',
-            link: function(scope, element, attrs) {
-                var model = $parse(attrs.fileModel);
-                var modelSetter = model.assign;
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      var model = $parse(attrs.fileModel);
+      var modelSetter = model.assign;
 
-                element.bind('change', function(){
-                    scope.$apply(function(){
-                        modelSetter(scope, element[0].files[0]);
-                    });
-                });
-            }
-        };
-    }]);
-
+      element.bind('change', function(){
+        scope.$apply(function(){
+          modelSetter(scope, element[0].files[0]);
+        });
+      });
+    }
+  };
+}]);

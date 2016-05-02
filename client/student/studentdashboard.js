@@ -9,6 +9,7 @@ angular.module('Perl.studentDashboard', ['ngMaterial', 'ngMdIcons', 'firebase'])
 	$scope.checkAuthentication = function() {
 		$scope.authObj.$onAuth(function(authData) {
 			if(authData) {
+				console.log("my authData is: ", authData);
 				$scope.uid = authData.auth.uid;
 			} else {
 				console.log("Error: No Token Found. Redirecting to SignIn");
@@ -16,7 +17,7 @@ angular.module('Perl.studentDashboard', ['ngMaterial', 'ngMdIcons', 'firebase'])
 			}
 		})
 	}
-	$scope.checkAuthentication();
+	// $scope.checkAuthentication();
 	// $scope.getStudentProfile = function() {
 	// 	studentFactory.getProfile()
 	// 	.then(function(data){
