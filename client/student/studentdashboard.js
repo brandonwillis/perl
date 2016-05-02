@@ -14,7 +14,7 @@ angular.module('Perl.studentDashboard', ['ngMaterial', 'ngMdIcons', 'firebase'])
 			} else {
 				console.log("Error: No Token Found. Redirecting to SignIn");
 				$state.go('signin');
-			}
+			} 
 		})
 	}
 	// $scope.checkAuthentication();
