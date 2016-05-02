@@ -8,10 +8,10 @@ angular.module('Perl.studentDashboard', ['ngMaterial', 'ngMdIcons', 'firebase'])
 	$scope.authObj = $firebaseAuth($scope.ref);
 	$scope.checkAuthentication = function() {
 		$scope.authObj.$onAuth(function(authData) {
-			console.log("my authData is: ", authData);
 			if(authData) {
 				$scope.uid = authData.auth.uid;
 			} else {
+				console.log("Error: No Token Found. Redirecting to SignIn");
 				$state.go('signin');
 			}
 		})
